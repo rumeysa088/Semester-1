@@ -1,0 +1,317 @@
+// #include<stdio.h>
+// int main(){
+//             int i,j;
+//                                 //   *****
+//                                 //   *****
+//                                 //   *****
+//                                 //   *****
+//     for(i=0;i<4;i++){
+//         for(j=0;j<6;j++){
+//             printf("*");
+//         }printf("\n"); 
+//     }
+//     return 0;
+// }
+
+// #include<stdio.h>
+// int main(){
+//             int i,j;
+//         for(i=1;i<=4;i++){    //number square
+//         for(j=1;j<=4;j++){    
+//             printf("%d",j);
+//         }printf("\n");
+//     }
+//     return 0;
+// }
+
+// #include<stdio.h>
+// int main(){
+//             int i,j;
+//         for(i=1;i<=4;i++){      //*
+//                                 //**
+//                                 //***
+//                                 //****
+//         for(j=1;j<=i;j++){    
+//             printf("*");
+//         }printf("\n");
+//     }
+//     return 0;
+// }
+
+#include<stdio.h>
+int main(){
+            int i,j;          //     *****
+                              //     ****
+                              //     ***
+                              //     **
+                              //     *
+        for(i=0;i<=4;i++){    
+        for(j=4;j>=i;j--){    
+            printf("*");
+        }printf("\n");
+    }
+    return 0;
+}
+
+#include<stdio.h>
+int main(){
+            int i,j;           // 1
+                               // 12
+                               // 123
+                               // 1234
+        for(i=1;i<=4;i++){    
+        for(j=1;j<=i;j++){    
+            printf("%d",j);
+        }printf("\n");
+    }
+    return 0;
+}
+
+#include<stdio.h>
+int main(){
+            int i,j;
+        for(i=1;i<=4;i++){    
+        for(j=1;j<8;j+=2){     //odd num rectangle
+           printf("%d",j);
+        }printf("\n");
+    }
+    return 0;
+}
+
+#include<stdio.h>
+int main(){
+            int i,j;                   //1
+                                      // 13
+                                     //  135
+                                    //   1357
+        for(i=1;i<=4;i++){ int a=1; 
+        for(j=1;j<=i;j++){   
+           printf("%d",a);a+=2; 
+        }printf("\n");
+    }
+    return 0;
+}
+#include<stdio.h>
+int main(){
+            int i,j,a;int d= n/2+1;
+            printf("enter number of rows");
+            scanf("%d",&a);
+        for(i=1;i<=5;i++){    
+        for(j=1;j<=5;j++){     
+           if(i==d || j==d)printf("*");
+           else printf("*");
+        }printf("\n");
+    }
+    return 0;
+}
+#include<stdio.h>
+int main(){
+            int i,j,a;                       /*   *****
+                                                  *   *  
+                                                  *   *
+                                                  *   *
+                                                  *****   */ 
+            printf("enter number of rows");       
+            scanf("%d",&a);
+        for(i=1;i<=a;i++){    
+        for(j=1;j<=a;j++){    
+           if((i==2&&j==2)||(i==2&&j==3)||(i==2&&j==4)||(i==3&&j==2)||(i==3&&j==3)||(i==3&&j==4)||(i==4&&j==2)||(i==4&&j==3)||(i==4&&j==4))printf(" ");
+           
+           else printf("*");
+        }printf("\n");
+    }
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    int rows = 5, cols = 10;  // You can change these values
+
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= cols; j++) {
+            // Print * if it's the first or last row, or first/last column
+            if (i == 1 || i == rows || j == 1 || j == cols) {
+                printf("*");
+            } else {                 //GENERAL VERSION
+                printf(" ");
+            }
+        }
+        printf("\n"); // Move to the next line after each row
+    }
+
+    return 0;
+}
+
+int main() {   int n;
+          printf("Enter number of rows/columns");       //*     *
+                                                     //    *   *
+                                                     //     * *
+          scanf("%d",&n);                           //       *
+                                                       //   * *
+                                                      //   *   *
+                                                   //     *     *
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+          if(i==j||i+j==(n+1)){printf("*");} else{printf(" ");}
+        }printf("\n");
+    }
+
+    return 0;
+}
+#include<stdio.h>
+int main(){
+            int i,j,a=1,n;
+            printf("Enter number of rows/columns"); scanf("%d",&n);
+        for(i=1;i<=n;i++){   
+        for(j=1;j<=i;j++){         //FLOYD'S TRIANGLE
+            printf("%d",a);a+=1;
+        }printf("\n");
+    }
+    return 0;
+}
+#include<stdio.h>
+int main(){
+            int i,j,a,n;
+            printf("Enter number of rows/columns"); scanf("%d",&n);
+        for(i=1;i<=n;i++){   
+             if(i%2!=0)a=1;
+             else a=0;
+        for(j=1;j<=i;j++){         
+            printf("%d",a);
+        }printf("\n");
+    }
+    return 0;
+}
+              //             *
+              //            **
+              //           ***
+              //          ****
+              //         *****
+              //        ******
+#include<stdio.h>
+int main(){
+            int i,j,a,n,k;
+            printf("Enter number of rows/columns"); scanf("%d",&n);
+        for(i=1;i<=n;i++)  
+        {  for(j=n;j>=i;j--){
+            printf(" ");
+        }
+        for(k=1;k<=i;k++){
+            printf("*");
+        }
+            printf("\n");
+        }
+    
+    return 0;
+    
+}              
+#include<stdio.h>
+int main(){
+            int i,j,k,n;
+            printf("Enter number of rows/columns"); scanf("%d",&n);
+        for(i=1;i<=n;i++){   
+             
+        for(j=n;j>=i;j--){         
+           printf(" ");
+        }                    //RHOMBHUS
+        for(k=1;k<=n;k++){         
+           printf("*");
+        }
+        printf("\n");
+    }
+    return 0;
+}    
+#include<stdio.h>
+int main(){
+            int i,j,a,n,k;
+            printf("Enter number of rows/columns"); scanf("%d",&n);a=1;
+        for(i=1;i<=n;i++)  
+        {  
+            for(k=n;k>=i;k--){          //PYRAMID
+                printf(" ");
+            }
+            for(j=1;j<=a;j++){
+            printf("*");
+        } a+=2;
+            printf("\n");
+        }
+    
+    return 0;
+    
+}      
+#include <stdio.h>
+
+int main() {
+     
+    for(int i=1;i<=5;i++)        //5X5 DIAMOND
+    {
+        for(int j=1;j<=5;j++)
+        {
+         if(i==1&&j==3 || i==2&&j==2 || i==2&&j==3 || i==2&&j==4||
+             i==3 || i==4&&j==2 || i==4&&j==3 || i==4&&j==4||
+             i==5&&j==3)printf("*");
+             else{printf(" ");}
+        }printf("\n");
+    }
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+             int nsp,nst=1,n,ml;
+    printf("Enter number of lines");
+    scanf("%d",&n);
+    ml=n/2;
+    nsp=ml-1;
+    for(int i=0;i<n,i++)
+    {
+      for(int j=0;j<nsp;j++)
+      {
+          printf(" ");
+      }
+      for(int k=0;k<nst;k++)
+      {
+          printf("*");
+      }
+      if(i<ml){nst++;nsp++}
+    }
+    return 0;
+}
+#include <stdio.h>
+
+int main()
+{
+    int i, j, N;
+
+    printf("Enter N: ");
+    scanf("%d", &N);
+for(int i=1;i<=N;i++){
+  for(int j=0;j<i;j++){
+      printf(" ");             //CROSS PATTERN
+  }if(i!=N)printf("%d",i);
+  for(int k=N;k>i;k--){
+      printf(" ");
+  }
+  for(int k=N;k>i;k--){
+      printf(" ");
+  }printf("%d",i);
+  printf("\n");
+ 
+}
+for(int i=1;i<N;i++){
+      for(int k=N;k>i;k--){
+      printf(" ");
+  }printf("%d",i);
+  
+  for(int k=0;k<i;k++){
+      printf(" ");
+  }
+  for(int j=0;j<i;j++){
+      printf(" ");
+  }printf("%d",i);
+  printf("\n");
+ 
+}    
+    return 0;
+}

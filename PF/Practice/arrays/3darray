@@ -1,0 +1,238 @@
+#include <stdio.h>
+
+int main() {
+    int arr[2][2][3];
+
+    // Input elements
+    printf("Enter 12 elements for a 3D array [2][2][3]:\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 3; k++) {
+               
+                scanf("%d", &arr[i][j][k]);
+            }
+        }
+    }
+
+    // Output elements
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 2; i++) {
+       
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 3; k++) {
+                printf("%3d ", arr[i][j][k]);
+            }
+            printf("\n"); // new row
+        }printf("\n");
+    }
+
+    return 0;
+}
+#include <stdio.h>    //print only elements of 2nd layer
+
+int main() {
+    int arr[2][2][3]={{{1,2,3},{4,5,6}},{{7,8,9},{2,3,4}}};
+
+    // Output elements
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 1; i < 2; i++) {
+       
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 3; k++) {
+                printf("%3d ", arr[i][j][k]);
+            }
+            printf("\n"); // new row
+        }printf("\n");
+    }
+
+    return 0;
+}
+#include <stdio.h>      //print diagonal elements
+int main() {
+    int arr[2][3][3]={{{1,2,3},{4,5,6},{7,8,9}},{{7,8,9},{2,3,4},{6,7,8}}};
+
+    // Output elements
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 2; i++) {
+       
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+               if(j==k) {printf("%d ", arr[i][j][k]);}
+            }
+            printf("\n"); // new row
+        }printf("\n");
+    }
+
+    return 0;
+}
+#include <stdio.h>      //print sum of each face
+int main() {
+    int arr[2][3][3]={{{1,2,3},{4,5,6},{7,8,9}},{{7,8,9},{2,3,4},{6,7,8}}};int sum=0;
+
+    // Output elements
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 2; i++) {
+         sum=0;
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+               sum=sum+arr[i][j][k];
+            }
+        }printf("Sum is %d\n",sum);
+    }
+
+    return 0;
+}
+
+#include <stdio.h>      //print average of all elements
+int main() {
+    int arr[3][3][3]={{{1,2,3},{3,4,5},{5,6,7}},{{7,8,9},{9,10,11},{11,12,13}},{{13,14,15},{15,1,2},{2,3,4}}};
+    int sum=0,avg;
+    
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 3; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+              sum=sum+arr[i][j][k];
+            }
+        }
+    }  avg=sum/27;
+    printf("Average is %d ",avg);
+
+    return 0;
+}
+#include <stdio.h>      //print indices of max element
+int main() {
+    int arr[3][3][3]={{{1,2,3},{3,4,5},{5,6,7}},{{7,8,9},{9,10,11},{11,12,13}},{{13,14,15},{15,1,2},{2,3,4}}};
+    int max=-1;int indexc,indexf,indexr;
+    
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 3; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+              if(arr[i][j][k]>max){max=arr[i][j][k];indexf=i;indexr=j;indexc=k;}
+            }
+        }
+    } 
+    printf("Maximum is %d \n",max);
+    printf("indices are [%d][%d][%d]",indexf,indexr,indexc);
+
+    return 0;
+}
+#include <stdio.h>      //print indices of min element
+int main() {
+    int arr[3][3][3]={{{19,2,3},{3,4,5},{5,6,7}},{{7,8,9},{9,10,11},{11,12,13}},{{13,14,15},{15,1,2},{2,3,4}}};
+    int min=arr[0][0][0];int indexc,indexf,indexr;
+    
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 3; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+              if(arr[i][j][k]<min){min=arr[i][j][k];indexf=i;indexr=j;indexc=k;}
+            }
+        }
+    } 
+    printf("Minimum is %d \n",min);
+    printf("indices are [%d][%d][%d]",indexf,indexr,indexc);
+
+    return 0;
+}
+#include <stdio.h>      
+int main() {              
+    int arr[3][3][3]={{{19,2,3},{3,4,5},{5,6,7}},{{7,8,9},{9,10,11},{11,12,13}},{{13,14,15},{15,1,2},{2,3,4}}};
+    
+    printf("\n=== 3D Array Elements ===\n");
+    for (int i = 0; i < 3; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {   //LAYER WISE TRANSPOSE
+              printf("%d ",arr[i][j][k]);
+            }printf("\n");
+        }printf("\n");
+    } 
+    for (int i = 0; i < 3; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = j; k < 3; k++) {
+             int temp=arr[i][j][k];
+              arr[i][j][k]=arr[i][k][j];
+              arr[i][k][j]=temp;
+            }
+        }
+    } 
+    for (int i = 0; i < 3; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+              printf("%d ",arr[i][j][k]);
+            }printf("\n");
+        }printf("\n");
+    } 
+    
+
+    return 0;
+}
+#include <stdio.h>
+int main() {                      //SUM OF 2 3D ARRAYS
+            int arr[2][3][3]={
+                 {{1,2,3},{4,5,6},{1,2,3}},
+                 {{4,5,6},{1,2,3},{4,5,6}}
+                 
+             };
+            int brr[2][3][3]={
+                 {{1,2,3},{4,5,6},{1,2,3}},
+                 {{4,5,6},{1,2,3},{4,5,6}}
+                 
+             };int crr[2][3][3];
+    for (int i = 0; i < 2; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+              crr[i][j][k]=arr[i][j][k]+brr[i][j][k];
+            }
+        }
+    } 
+    for (int i = 0; i < 2; i++) {
+    
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+              printf("%d ",crr[i][j][k]);
+            }printf("\n");
+        }printf("\n");
+    } 
+    return 0;
+}
+
+// 🔵 Advanced Level
+
+// Matrix Multiplication in 3D
+
+// Given two 3D arrays representing matrices for each layer, perform 2D matrix multiplication for corresponding layers and store results in a third array.
+
+// 3D Array as a Cube
+
+// Treat a 3D array [n][n][n] as a cube.
+
+
+
+// Print the surface elements of the cube only.
+
+// Temperature Data Problem
+
+// A 3D array stores temperature readings for cities, months, and days.
+
+// Dimensions: [5][12][30].
+
+// Find:
+
+// Average temperature of each city.
+
+// Hottest day in each month for each city.
+
+// Memory Layout
+
+// Write a program to print the address of each element of a [2][3][4] array.
+
+// Observe the row-major order storage pattern in C.

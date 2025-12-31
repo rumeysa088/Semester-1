@@ -1,0 +1,365 @@
+#include <stdio.h>
+
+int main() {
+    printf("enter the number of rows and columns");int r,c;
+    scanf("%d",&r);
+    scanf("%d",&c);
+    int arr[r][c];
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]); 
+       } 
+     }
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          printf("%d",arr[i][j]); 
+       } printf("\n");
+     }
+
+    return 0;
+} 
+
+#include <stdio.h>
+
+int main() {
+    printf("enter the number of students");int r,c;
+    scanf("%d",&r);
+    // scanf("%d",&c);
+    int arr[4][2];
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<2;j++)
+       {  printf("enter value row %d column %d",i+1,j+1);
+          scanf("%d",&arr[i][j]); 
+       } 
+     }
+     for(int i=0;i<r;i++)     //Prints roll and marks of students
+     {
+       for(int j=0;j<2;j++)
+       {
+          printf("%d",arr[i][j]); 
+       } printf("\n");
+     }
+
+    return 0;
+
+    #include <stdio.h>
+
+int main() {
+   
+    int arr[2][2]={{1,2},{3,4}};
+    int brr[2][2]={{5,6},{7,8}};
+    int crr[2][2];
+      
+     
+     for(int i=0;i<2;i++)       //Addition of MATRIX
+     {
+       for(int j=0;j<2;j++)
+       {
+          crr[i][j]=arr[i][j]+brr[i][j];
+       } 
+     }
+     for(int i=0;i<2;i++)
+     {
+       for(int j=0;j<2;j++)
+       {
+          printf("%d ",crr[i][j]);
+       } printf("\n");
+     }
+
+    return 0;
+} 
+
+#include <stdio.h>
+int main() {  int r,c;int sum=0;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    int arr[r][c];
+     
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }
+     for(int i=0;i<r;i++)
+     {                                 //SUM of MATRIX
+       for(int j=0;j<c;j++)
+       {
+          sum=sum+arr[i][j];
+       } 
+     }
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          printf("%d ",arr[i][j]);
+       } printf("\n");
+     }
+  printf("\n SUM is %d",sum);
+    return 0;
+} 
+#include <stdio.h>
+int main() {  int r,c;int sum=0;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    int arr[r][c];
+     
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }int max=-1;
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          if(arr[i][j]>max){max=arr[i][j];}
+       } 
+     }
+     for(int i=0;i<r;i++)         //Finding MAX
+     {
+      for(int j=0;j<c;j++)
+      {
+          printf("%d ",arr[i][j]);
+      } printf("\n");
+     }
+  printf("\n MAX is %d",max);
+    return 0;
+}
+#include <stdio.h>
+int main() {  int r,c;int sum=0;int indexR;int indexC;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    int arr[r][c];
+     
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       }                           //FINDING MINIMUM
+     }int min=arr[0][0];
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          if(arr[i][j]<min){min=arr[i][j];
+          indexR=i; indexC=j;}
+       } 
+     }
+     for(int i=0;i<r;i++)
+     {
+      for(int j=0;j<c;j++)
+      {
+          printf("%d ",arr[i][j]);
+      } printf("\n");
+     }
+  printf("\n MIN is %d and present at (%d,%d)",min,indexR,indexC);
+    return 0;
+}
+#include <stdio.h>
+int main() {  int r,c;int sum=0;int s1,s2,L1,L2;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    printf("enter the starting coordinate");
+    scanf("%d",&s1);scanf("%d",&s2);
+    printf("enter the ending coordinate");
+   scanf("%d",&L1);scanf("%d",&L2);
+    
+    int arr[r][c];
+                                 //sum of rectangle within MATRIX
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }
+     for(int i=s1;i<=L1;i++)
+     {                                 
+       for(int j=s2;j<=L2;j++)
+       {
+          sum=sum+arr[i][j];
+       } 
+     }
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          printf("%d ",arr[i][j]);
+       } printf("\n");
+     }
+  printf("\n SUM is %d",sum);
+    return 0;
+} 
+
+#include <stdio.h>
+int main() {  int r,c;int sum=0;int maxSum;int maxRow;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    
+    int arr[r][c];
+     
+     for(int i=0;i<r;i++)    //MAX sum of row with row num
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }
+     for(int i=0;i<r;i++)
+     {                                 
+       for(int j=0;j<c;j++)
+       {
+          sum=sum+arr[i][j];if(sum>maxSum){maxSum=sum;maxRow=i+1;}
+       } sum=0;
+     }
+     for(int i=0;i<r;i++)
+     {
+       for(int j=0;j<c;j++)
+       {
+          printf("%d ",arr[i][j]);
+       } printf("\n");
+     }
+  printf("\n  maxSUM is %d row number %d",maxSum,maxRow);
+    return 0;
+}
+-----------------------------------------------------------------------------------
+#include <stdio.h>
+int main() {  int r,c;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    
+    int arr[r][c];
+     
+     for(int i=0;i<r;i++)    
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }                          //TRANSPOSE of Matrix
+     
+     for(int i=0;i<c;i++)
+     {
+       for(int j=0;j<r;j++)
+       {
+          printf("%d ",arr[j][i]);
+       } printf("\n");
+     }
+  
+    return 0;
+} 
+
+#include <stdio.h>
+int main() {  int r,c;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    
+    int arr[r][c];
+    int trans[c][r];         //TRANSPOSE using 2nd matrix
+     
+     for(int i=0;i<r;i++)    
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }
+     for(int i=0;i<c;i++)
+     {
+       for(int j=0;j<r;j++)
+       {
+          trans[i][j]=arr[j][i];
+       } printf("\n");
+     }
+     for(int i=0;i<c;i++)
+     {
+       for(int j=0;j<r;j++)
+       {
+          printf("%d ",trans[i][j]);
+       } printf("\n");
+     }
+    return 0;
+}
+#include <stdio.h>
+int main() {  int r,c;
+    printf("enter the number of ROWS");
+    scanf("%d",&r);
+    printf("enter the number of COLUMNS");
+    scanf("%d",&c);
+    
+    int arr[r][c];
+   
+     for(int i=0;i<r;i++)    
+     {
+       for(int j=0;j<c;j++)
+       {
+          scanf("%d",&arr[i][j]);
+       } 
+     }
+     for(int i=0;i<r;i++)    
+     {
+       for(int j=i;j<c;j++) // TRANSPOSE within same array
+       {
+         int temp=arr[i][j];
+          arr[i][j]=arr[j][i];
+          arr[j][i]=temp;
+       } 
+     }for(int i=0;i<r;i++)    
+     {
+       for(int j=0;j<c;j++)
+       {
+          printf("%d ",arr[i][j]);
+       } printf("\n");
+     }
+    return 0;
+}
+#include<stdio.h>
+
+int main()
+{
+  int arr[4][4]={{1,2,3,4},{3,4,5,6},{5,6,7,8},{2,3,4,5}};
+  int sum=0;
+  for(int i=0;i<4;i++){
+      for(int j=0;j<4;j++){
+         printf("%d ",arr[i][j]); 
+      }printf("\n");
+  }
+  for(int i=0;i<4;i++){
+      
+         int temp=arr[i][i];
+         arr[i][i]=arr[i][4-i-1];
+         arr[i][4-i-1]=temp;       //SWAPPING DIAGONALS
+  }
+  printf("\n");
+ for(int i=0;i<4;i++){
+      for(int j=0;j<4;j++){
+         printf("%d ",arr[i][j]); 
+      }printf("\n");
+  }
+ 
+return 0;
+}

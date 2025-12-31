@@ -1,0 +1,507 @@
+#include <stdio.h>
+
+int main() {
+            int arr[]={1,2,3,4,5,6};
+            int rev[6];
+            for(int i=0;i<6;i++)
+            {
+                  rev[i]=arr[5-i];
+            }
+            for(int k=0;k<6;k++)
+            {
+                printf("%d",rev[k]);
+            }
+    return 0;
+}
+
+#include<stdio.h>
+int main(){
+            int arr[]={1,2,3,4,5,6,7,8};
+            int size=sizeof(arr)/sizeof(arr[0]);int rev[size];
+    for(int i=0,j=size-1;i<size;i++,j--)
+    {
+        rev[i]=arr[j];
+    }
+    for(int i=0;i<size;i++)
+    {
+      printf("%d ",rev[i]);
+    }
+    
+    return 0;
+}   
+
+#include <stdio.h>
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int temp;
+
+    for (int i = 0, j = 5; i < j; i++, j--) {
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+                                     //WITH FOR
+    for (int k = 0; k < 6; k++) {
+        printf("%d ", arr[k]);
+    }
+
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+            int arr[]={1,2,3,4,5,6};int temp,i=0,j=5;
+            while(j>i)
+            {
+                    temp=arr[i]; //temp=1
+                    arr[i]=arr[j]; //arr[0]=6
+                    arr[j]=temp;  //arr[5]=1
+                    i++;
+                    j--;                          //WITH WHILE
+            }
+            for(int k=0;k<6;k++)
+            {
+                printf("%d",arr[k]);
+            }
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+            int arr[]={1,2,3,3,2,1};
+            int brr[6];int flag=0;
+            for(int i=0;i<6;i++)
+            {
+                brr[i]=arr[5-i];    //PALINDROME
+            }
+            for(int i=0;i<6;i++)
+            {
+                if(brr[i]!=arr[i])flag=1;
+            }
+            if(flag==0)printf("PALINDROME");
+            else printf(" not a PALINDROME");
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+            int arr[]={1,2,3,3,2,1};int flag=0;
+            
+            for(int i=0;i<6;i++)
+            {
+               if(arr[i]!=arr[5-i])flag=1;
+            }
+            if(flag==0)printf("PALINDROME");
+            else  printf("not a PALINDROME");
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {        // 0 1 2 3 4 5 6
+            int arr[]={1,2,3,4,5,6,7};
+             for(int i=2,j=5;i<j;i++,j--)
+            {
+               int temp=arr[i];
+               arr[i]=arr[j];
+               arr[j]=temp;  // rotate index 2-5
+            }
+            for(int i=0;i<7;i++)
+            {
+               printf("%d",arr[i]);
+            }
+            
+            
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {        // 0 1 2 3 4 5 6 7 8
+            int arr[]={1,2,3,4,6,7,8,9,10};int sum=0;
+             for(int i=0;i<9;i++)
+            {
+              sum=sum+arr[i];
+            }                       //finding MISSING number in given RANGE
+        int num=((10*11)/2)-sum;  
+              printf("missing number is %d",num);
+    return 0;
+}
+
+#include <stdio.h>
+int main() {        // 0 1 2 3 4 5 6 7 8
+            int arr[]={2,5,3,2,6,7,8,9,10};
+             for(int i=0;i<9;i++)
+            {
+              for(int j=i+1;j<9;j++)
+              {                             //DUPLICATE
+                 if(arr[i]==arr[j])
+                 {printf("%d is a duplicate number",arr[i]);}
+              }
+            }
+         
+           
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+    int arr[] = {2, 2, 3, 3, 6, 7, 7, 9, 9};
+    int count[10] = {0};  
+
+                                                 // Count occurrences
+    for (int i = 0; i < 9; i++) {
+        count[arr[i]]++;
+    }
+
+    // Print unique numbers (count == 1)
+    for (int i = 0; i < 10; i++) {
+        if (count[i] == 1) {
+            printf("%d is unique\n", i);
+        }
+    }
+
+    return 0;
+}
+#include <stdio.h>
+int main() {        // 0 1 2 3 4 5 6 7 8
+            int arr[]={2,2,3,3,6,7,7,9,9};
+             for(int i=0;i<9;i++)
+            {  int flag=0;
+              for(int j=i+1;j<9;j++)
+              {
+                 if(arr[i]==arr[j]){
+                     flag=1;}
+              }
+              if(flag==0){
+                printf("%d is unique\n",arr[i]);
+                break;    
+              }
+            }
+            
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+    int arr[] = {2, 2, 3, 3, 6, 7, 7, 9, 9};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    for (int i = 0; i < size; i++) {
+        int flag = 0;
+        for (int j = 0; j < size; j++) {
+            if (i != j && arr[i] == arr[j]) {
+                flag = 1;                   // Found a duplicate
+                break;
+            }
+        }
+        if (flag == 0) {
+            printf("%d is unique\n", arr[i]);
+            break;
+        }
+    }
+
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int arr[3][3] = {
+        {1, 2, 5},
+        {3, 4, 6},
+        {8, 7, 0}
+    };
+    
+    int brr[3][2] = {
+        {1, 2},
+        {2, 3},
+        {7, 8}
+    };
+
+    int res[3][2] = {0};
+
+                                // Matrix MULTIPLICATION
+    for (int i = 0; i < 3; i++) {           // rows of arr
+        for (int j = 0; j < 2; j++) {       // columns of brr
+            for (int k = 0; k < 3; k++) {   // shared dimension
+                res[i][j] += arr[i][k] * brr[k][j];
+            }
+        }
+    }
+
+    // Print result
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", res[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int ar, ac, br, bc,t;
+
+    // INPUT
+    printf("enter number of rows: ");
+    scanf("%d", &ar);
+    printf("enter number of columns: ");
+    scanf("%d", &ac);
+
+    int arr[ar][ac];
+    for (int i = 0; i < ar; i++) {
+        for (int j = 0; j < ac; j++) {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+
+    printf("enter number of rows: ");
+    scanf("%d", &br);
+    printf("enter number of columns: ");
+    scanf("%d", &bc);
+
+    int brr[br][bc];
+    for (int i = 0; i < br; i++) {
+        for (int j = 0; j < bc; j++) {
+            scanf("%d", &brr[i][j]);
+        }
+    }
+int k=br;
+    int res[ar][bc];  
+if(ac!=br){printf("MULTIPLICATION NOT POSSIBLE");}
+else{
+    // OUTPUT
+    for (int i = 0; i < ar; i++) {
+        for (int j = 0; j < ac; j++) {
+            printf("%d ", arr[i][j]);  
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < br; i++) {
+        for (int j = 0; j < bc; j++) {
+            printf("%d ", brr[i][j]);  
+        }
+        printf("\n");
+    } 
+for(int i=0;i<ar;i++)
+{
+    for(int j=0;j<bc;j++)
+    {  res[i][j] = 0;
+      for(t=0;t<k;t++)
+      {
+          res[i][j]+=arr[i][t]*brr[t][j];
+      }  
+    }
+}  for (int i = 0; i < ar; i++) {
+        for (int j = 0; j < bc; j++) {
+            printf("%d ", res[i][j]);  
+        }
+        printf("\n");
+    }
+}
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+    int r, c;
+
+    // INPUT
+    printf("Enter number of rows: ");
+    scanf("%d", &r);
+    printf("Enter number of columns: ");
+    scanf("%d", &c);
+
+    int arr[r][c];
+
+    // Read matrix elements                //wave print
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+
+    // Wave print row-wise
+    for (int i = 0; i < r; i++) {
+        if (i % 2 == 0) {
+           
+            for (int j = 0; j < c; j++) {
+                printf("%d ", arr[i][j]);
+            }
+        } else {
+            
+            for (int j = c - 1; j >= 0; j--) {
+                printf("%d ", arr[i][j]);
+            }
+        }
+        printf("\n");  
+    }
+
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+    int r, c;
+
+    // INPUT
+    printf("Enter number of rows: ");
+    scanf("%d", &r);
+    printf("Enter number of columns: ");
+    scanf("%d", &c);
+
+    int arr[r][c];
+
+    // Read matrix elements                //wave print
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &arr[i][j]);
+        }
+    }printf("\n");
+
+    // Wave print COULMN-wise
+    for (int j= 0; j< c;j++) {  //j=1 i=0
+        if (j% 2!=0) {
+           
+            for (int i= 0;i<r; i++) {
+                printf("%d ", arr[i][j]);
+            }
+        } else {
+            
+            for (int i= r- 1; i>= 0; i--) {
+                printf("%d ", arr[i][j]);
+            }
+        }
+          
+    }
+
+    return 0;
+}
+
+#include <stdio.h>
+int main() {
+  int arr[]={1,2,3,7,9};int n,pos,i;
+  
+ printf("Input value to be ineserted ");
+ scanf("%d",&n);
+ for(i=0;i<5;i++)
+ {                                   //inserting a number
+     if(arr[i]>n){pos=i;break;}
+ }
+ for(int j=5;j>3;j--)
+ {
+     arr[j]=arr[j-1];
+ }
+ arr[i]=n;
+ for(int i=0;i<6;i++)
+ {
+     printf("%d ",arr[i]);
+ }
+    return 0;
+}
+
+#include<stdio.h>
+
+int main()
+{  int found=0;
+  int arr[]={1,2,3};
+  int brr[]={4,2,5};
+  int mer[6];int size=0;
+  for(int i=0;i<3;i++){
+      mer[i]=arr[i];size++;
+  }
+  for(int j=0;j<3;j++){ found=0;
+      for(int i=0;i<size;i++){
+      if(mer[i]==brr[j])found=1;  //MERGE
+      }if(found==0){mer[size]=brr[j];size++;}
+  }
+  for(int i=0;i<size;i++){
+      printf("%d ",mer[i]);
+  }
+return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100], rev[100];
+    int len, count=0;
+
+    printf("Enter any string: ");
+    scanf("%[^\n]", str);
+
+    len = strlen(str);
+    int index = len - 1;
+    int wordEnd = len - 1;
+
+    while(index >= 0) {
+        // Move index backward until a space or start
+        while(index >= 0 && str[index] != ' ') {
+            index--;
+        }
+
+        // Copy current word
+        int wordStart = index + 1;
+        for(int i = wordStart; i <= wordEnd; i++) {
+            rev[count++] = str[i];
+        }
+
+        // Add space if not the last word
+        if(index > 0) rev[count++] = ' ';
+
+        wordEnd = index - 1; // Move wordEnd for next word
+        index--;
+    }
+
+    rev[count] = '\0';
+
+    printf("Reversed String: %s\n", rev);
+
+    return 0;
+}
+
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[200];
+    char word[200];
+    int i, j, found;
+    int strLen, wordLen;
+
+    
+    printf("Enter any string: ");
+    scanf("%[^\n]",str);
+    printf("Enter any word to search: ");
+   scanf(" %[^\n]",word);
+
+    strLen  = strlen(str);  
+    wordLen = strlen(word); 
+
+    for(i=0; i<=strLen - wordLen; i++)
+    {
+       
+        found = 1;
+        for(j=0; j<wordLen; j++)
+        {
+            if(str[i+j] != word[j])
+            {
+                found = 0;
+                break;
+            }
+        }
+
+        if(found == 1)
+        {
+            printf("'%s' found at index: %d \n", word, i);
+        }
+    }
+
+    return 0;
+}
