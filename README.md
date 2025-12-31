@@ -25,7 +25,7 @@ This project is a console-based game developed in C, inspired by the popular mob
 <li>Motivational messages when tiles are hit correctly</li>
 </ul>
 This project demonstrates programming concepts such as arrays, structures, loops, functions, conditional statements, real-time input handling, and console manipulation. It combines logic, timing, and interaction to create an engaging and playable game experience.
-
+<br>
 ICT contains practice exercises and the final project for the semester.
 
 <b>Hogwarts House Quiz (ICT Final Project)</b>
