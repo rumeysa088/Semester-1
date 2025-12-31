@@ -23,6 +23,7 @@
 
 <p>This project demonstrates programming concepts such as arrays, structures, loops, functions, conditional statements, real-time input handling, and console manipulation. It combines logic, timing, and interaction to create an engaging and playable game experience.</p>
 
+<p><b>ICT</b> contains practice exercises and the final project for the semester.</p>
 <h2>Hogwarts House Quiz (ICT Final Project)</h2>
 
 <p>This is an interactive Hogwarts House Quiz web application built using HTML, CSS, and JavaScript. The project allows users to answer 20 questions and discover which Hogwarts house they belong to: Gryffindor, Hufflepuff, Ravenclaw, or Slytherin.</p>
