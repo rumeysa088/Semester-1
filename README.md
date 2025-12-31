@@ -42,3 +42,6 @@
 <p>This project demonstrates front-end development skills, including DOM manipulation, event handling, and styling with CSS for both layout and animations. It serves as a complete ICT semester project combining creativity, logic, and user interaction.</p>
 
 <p>This repository serves as a complete academic reference for all Semester 1 work and can be used for review or portfolio purposes.</p>
+
+
+PS: it also has some random stuff i never bothered completeing :)
