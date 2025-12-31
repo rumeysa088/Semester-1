@@ -1,0 +1,27 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" placeholder="Enter temp" id="celc">
+    <button id="far" onclick="convert()">Farenheit</button>
+    <button id="output"></button>
+    <script>
+        function convert(){
+            let temp=Number(document.getElementById("celc").value);
+            let result=(temp*9/5)+32;
+            document.getElementById("output").textContent="Temp in Fahrenheit is" + result;
+        }
+    </script>
+</body>
+</html> -->
+
+function convert(){
+    let temp=Number(prompt("Enter temperature in celcius: "));
+    let result=(temp*9/5)+32;
+    console.log("Temp in Fahrenheit: "+result);
+}
+convert();

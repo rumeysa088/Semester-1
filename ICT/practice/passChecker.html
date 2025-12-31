@@ -1,0 +1,39 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Enter Username</h3>
+    <input type="text" placeholder="username" id="username">
+    <h3>Password</h3>
+    <input type="password" placeholder="password" id="pass">
+    <button id="button" onclick="check()">Enter</button>
+    <p id="output"></p>
+    <script>
+        function check(){
+           let dbusername="rumaisa";
+           let dbpass=1234;
+
+           let username=(document.getElementById("username").value);
+           let password=Number(document.getElementById("pass").value);
+
+           if(username===dbusername && password===dbpass){document.getElementById("output").textContent="Access Granted!";}
+           else{document.getElementById("output").textContent="Access DEnied!";}
+        }
+    </script>
+</body>
+      
+</html> -->
+
+function checker(){
+    let dbusername="rumaisa";
+    let dbpass=1234;
+    let username=prompt("Enter username: ");
+    let pass=Number(prompt("Enter password: "));
+
+    if(username===dbusername && pass===dbpass){console.log("Access Granted !");}
+    else{console.log("Access Denied!");}
+}

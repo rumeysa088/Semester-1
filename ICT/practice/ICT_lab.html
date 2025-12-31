@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduLearn</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #2e86de;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    nav {
+      background-color: #1b4f72;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      color: #f7dc6f;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background: url("https://img.freepik.com/free-vector/organic-flat-people-business-training_23-2148909572.jpg?semt=ais_hybrid&w=740&q=80") center/cover no-repeat;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero button:hover {
+      background-color: #e67e22;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+    }
+
+    .category-box {
+      background-color: #d6eaf8;
+      padding: 20px;
+      border-radius: 8px;
+      width: 30%;
+      text-align: center;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 40px 20px;
+    }
+
+    .course {
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .course img {
+      width: 100%;
+      transition: transform 0.3s;
+    }
+
+    .course img:hover {
+      transform: scale(1.05);
+    }
+
+    .course button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+    }
+
+    .instructor {
+      padding: 40px 20px;
+      text-align: center;
+      border: 1px solid #f5cba7;
+      background-color: #fdf2e9;
+    }
+
+    .instructor img {
+      width: 150px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+
+    .testimonials {
+      padding: 40px 20px;
+      background-color: #f4f6f7;
+    }
+
+    blockquote {
+      font-style: italic;
+      border-left: 5px solid #3498db;
+      margin: 20px;
+      padding-left: 20px;
+      background: #ffffff;
+    }
+
+    cite {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .newsletter {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #d5f5e3;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 10px;
+      width: 250px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .newsletter button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #16a085;
+      color: white;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+
+    .newsletter button:hover {
+      background-color: teal;
+
+    }
+
+    .contact {
+      padding: 40px 20px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    footer {
+      background-color: midnightblue;
+
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EduLearn</h1>
+    <p>Empowering Minds Through Knowledge</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Instructors</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Learn Anywhere, Anytime</h2>
+      <button>Join Now</button>
+    </div>
+  </section>
+
+  <section class="categories">
+    <div class="category-box">Technology</div>
+    <div class="category-box">Business</div>
+    <div class="category-box">Art & Design</div>
+  </section>
+
+  <section class="courses">
+    <div class="course">
+      <img src="https://www.elegantthemes.com/blog/wp-content/uploads/2018/12/top11.png" alt="">
+      <p><strong>Web Development</strong></p>
+      <p>Ahmed Khan</p>
+      <button>Enroll Now</button>
+    </div>
+    <div class="course">
+      <img src="https://cdn-cchkmpj.nitrocdn.com/CJXGnJvCvbQYOSNVvxpLvOYcHhpJDKbH/assets/images/optimized/rev-994e8f5/ossisto.com/wp-content/uploads/2024/03/How-do-companies-build-and-manage-their-brand-identities-and-reputations.webp" alt="">
+      <p><strong>Marketing Basics</strong></p>
+      <p>Fatima Rizvi</p>
+      <button>Enroll Now</button>
+    </div>
+    <div class="course">
+      <img src="https://www.careeraddict.com/uploads/article/63908/graphic-designer.png" alt="">
+      <p><strong>Graphic Design</strong></p>
+      <p>Ali Raza</p>
+      <button>Enroll Now</button>
+    </div>
+    <div class="course">
+      <img src="https://media.istockphoto.com/id/1277836831/vector/python-code-language-sign-programming-coding-and-developing-concept.jpg?s=612x612&w=0&k=20&c=bxQefLn1zbEv0sG6dRLz9CjFfkiKgh3mRRpIFWHlskI=" alt="">
+      <p><strong>Python Programming</strong></p>
+      <p>Zara Malik</p>
+      <button>Enroll Now</button>
+    </div>
+  </section>
+
+  <article class="instructor">
+    <h2>Featured Instructor</h2>
+    <p>Dr. Ayesha Siddiqui, 15+ years experience in Computer Science.</p>
+    <img src="https://static.vecteezy.com/system/resources/previews/045/011/065/non_2x/female-teacher-cute-woman-stands-with-pointer-and-book-school-and-learning-concept-teachers-day-vector.jpg" alt="featured insructor">
+  </article>
+
+  <section class="testimonials">
+    <blockquote>
+      "Great platform with amazing content!"
+      <cite>- Hina Shah</cite>
+    </blockquote>
+    <blockquote>
+      "Easy to follow and very helpful."
+      <cite>- Bilal Ahmed</cite>
+    </blockquote>
+  </section>
+
+  <section class="newsletter">
+    <form>
+      <input type="email" placeholder="Enter your email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="contact">
+    <p>123 Knowledge Avenue, Lahore, Pakistan</p>
+    <p>+92 300 1234567</p>
+    <p>info@edulearn.com</p>
+  </section>
+
+  <footer>
+    © 2025 EduLearn. All Rights Reserved.
+  </footer>
+
+</body>
+</html>

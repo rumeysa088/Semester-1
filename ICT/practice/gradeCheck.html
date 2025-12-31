@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Enter your marks (1-100) </h3>
+    <input type="number" placeholder="marks" id="marks">
+    <button onclick="check()">Check</button>
+    <p id="output"></p>
+    <script>
+        function check(){
+            let n=Number(document.getElementById("marks").value);
+            if(n>90){document.getElementById("output").textContent="Grade is A+";}
+            else if(n>80 && n<89){document.getElementById("output").textContent="Grade is A";}
+            else if(n>70 && n<79){document.getElementById("output").textContent="Grade is B";}
+        }
+    </script>
+</body>
+</html>

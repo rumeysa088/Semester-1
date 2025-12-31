@@ -1,0 +1,38 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" placeholder="enter first number" id="num1">
+    <input type="number" placeholder="enter second number" id="num2">
+    <input type="number" placeholder="enter third number" id="num3">
+    <button onclick="check()">Check</button>
+    <p id="output"></p>
+    <script>
+        function check(){
+            let n1=Number(document.getElementById("num1").value);
+            let n2=Number(document.getElementById("num2").value);
+            let n3=Number(document.getElementById("num3").value);
+
+            if(n1>n2 && n1>n3){ document.getElementById("output").textContent="Number 1 is greatest!";}
+            else if(n2>n1 && n2>n3){document.getElementById("output").textContent="Number 2 is greatest!";}
+            else{document.getElementById("output").textContent="Number 3 is greatest!";}
+            
+        }
+    </script>
+</body>
+</html> -->
+
+function max(){
+    let num1=Number(prompt("Enter first number: "));
+    let num2=Number(prompt("Enter second number: "));
+    let num3=Number(prompt("Enter third number: "));
+
+    if(num1>num2 && num1>num3){console.log("Num1 is greatest");}
+    else if(num2>num1 && num2>num3){console.log("Num2 is greatest");}
+    else{console.log("Num3 is greatest");}
+}
+max();

@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(162, 200, 231);
+            
+        }
+        #output{
+            width: 90px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <input type="number" placeholder="Enter first number" id="num1">
+    <input type="number" placeholder="Enter second number" id="num2">
+    <input type="text" placeholder="enter operator" id="op">
+    <button onclick="calc()">Enter</button>
+    <button id="output"></button>
+    <script>
+        function calc(){
+            let a=Number(document.getElementById("num1").value);
+            let b=Number(document.getElementById("num2").value);
+            let op=(document.getElementById("op").value);
+            let result;
+            if(op==='+'){ result=a+b;}
+            if(op==='-'){result=a-b;}
+            if(op==='*'){result=a*b;}
+            if(op==='/'){ result=a/b;}
+
+            document.getElementById("output").textContent="Result: "+result;
+        }
+    </script>
+</body>
+</html> -->
+
+function calculator(){
+    let a=Number(prompt("Enter first number:"));
+    let b=Number(prompt("Enter second number: "));
+    let op=prompt("Enter operation to perform: ");
+
+    let result;
+
+    if(op==='+'){result=a+b;}
+     if(op==='-'){result=a-b;}
+      if(op==='*'){result=a*b;}
+       if(op==='/'){result=a/b;}
+    
+    console.log("result : "+result);
+}
+calculator();

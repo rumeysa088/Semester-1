@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hogwarts House Quiz</title>
+
+  <style>
+    /* ---------- Base / Theme ---------- */
+    :root{
+      --paper:#1a1a1a;
+      --accent:#c9a86a;
+      --muted:rgba(255,255,255,0.85);
+      --card-bg:rgba(0,0,0,0.55);
+      --glass: rgba(0,0,0,0.35);
+      --maroon: #6f1a1a;
+      --gryff:#7b1717;
+      --slyth:#1f5e2e;
+      --raven:#163b63;
+      --huff:#8a6b1e;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700&display=swap');
+
+    html,body {
+      height:100%; margin:0; padding:0;
+      background:var(--paper) url('https://cdn.wallpapersafari.com/5/35/Ksnqji.jpg') center/cover no-repeat fixed;
+      color:var(--muted);
+     
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    *{ box-sizing: border-box; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      display:flex; justify-content:center; gap:20px;
+      padding:14px 10px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
+      backdrop-filter: blur(4px);
+      position:sticky;
+       top:0; z-index:30;
+    }
+    nav a {
+      color:var(--accent); text-decoration:none; padding:8px 14px;
+      border-radius:8px; font-weight:600;
+      
+    }
+    nav a:hover { color:#fff; text-shadow:0 0 8px var(--accent); transform:translateY(-1px); }
+    nav a:active { background:rgba(0,0,0,0.45); color:#fff; box-shadow:0 3px 12px rgba(0,0,0,0.6); }
+
+    /* ---------- Page Containers ---------- */
+    .page { max-width:1000px; margin:34px auto; padding:18px;  animation: pageIn .45s ease both; }
+    @keyframes pageIn { from { transform:translateY(8px); opacity:0 } to { transform:none; opacity:1 } }
+
+    header h1 {
+      text-align:center; margin:2px 0 10px; font-family:'Libre Baskerville', serif;
+      font-size:2.6rem; color:var(--muted); text-shadow:0 3px 12px rgba(0,0,0,0.6);
+    }
+    #greeting { text-align:center; color:#e2c78b; margin-bottom:18px; font-weight:800; font-size: 20px; }
+
+    /* ---------- Home: House Cards ---------- */
+    .house-info { display:flex; flex-direction:column; gap:24px; margin-top:20px; }
+
+    .house {
+      display:flex; align-items:center; justify-content:space-between;
+      width:100%; min-height:250px; padding:30px;
+      border-radius:14px; color:rgba(255,255,255,0.9);
+      box-shadow:0 8px 26px rgba(0,0,0,0.6);
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .house:hover { transform:scale(1.02); box-shadow:0 16px 40px rgba(0,0,0,0.8); }
+    .house-content { flex:1; padding-right:20px; }
+
+    .house img {
+      width:150px; object-fit:contain;
+      border-radius:10px; background:rgba(0,0,0,0.25); padding:10px;
+    }
+
+    .gryffindor { background:linear-gradient(135deg,#4c0000,#8b0000); }
+    .ravenclaw  { background:linear-gradient(135deg,#0a1a3a,#163b63); }
+    .hufflepuff { background:linear-gradient(135deg,#3a310d,#8a6b1e); }
+    .slytherin  { background:linear-gradient(135deg,#09271b,#1f5e2e); }
+
+    .house h2 { font-family:'Libre Baskerville', serif; color:var(--accent); font-size:1.8rem; margin-bottom:10px; }
+    .house p { font-size:1rem; line-height:1.5; }
+
+    .center { text-align:center; margin-top:20px; }
+
+    .btn {
+      display:inline-block; background:var(--accent); color:#000;
+      font-weight:700; padding:12px 20px; border-radius:10px; border:none;
+      transition:transform .14s ease, box-shadow .14s ease;
+    }
+    .btn:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.6); }
+  
+
+    /* ---------- Quiz Page ---------- */
+    .quiz-wrap { display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; }
+    .quiz-main { flex:1 1 640px; background:var(--card-bg); padding:18px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+    .quiz-aside { width:240px; background:var(--glass); padding:16px; border-radius:10px; }
+
+    .question-block {
+      padding:14px; background:rgba(0,0,0,0.35); margin-bottom:12px;
+      border-radius:8px; transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .question-block:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+
+    .question-block h3 { margin:0 0 10px; font-size:1.02rem; color:var(--muted); font-weight:600; }
+    .options label { display:block; margin:6px 0; padding:8px 10px; border-radius:8px; cursor:pointer; user-select:none; transition: background .12s ease, transform .08s ease; }
+    .options input { margin-right:10px; }
+
+    .options label:hover { background: rgba(255,255,255,0.03); transform:translateX(3px); }
+    .options input:checked + span { font-weight:700; color:#fff; }
+
+    .progress { height:12px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; margin-top:10px; }
+    .progress > i { display:block; height:100%; background:linear-gradient(90deg,var(--accent), #e2c78b); width:0%; transition: width .36s cubic-bezier(.2,.9,.2,1); }
+    .aside-mini { margin-bottom:12px; color:rgba(255,255,255,0.9); font-weight:600; }
+
+    /* submit disabled state */
+    .btn[disabled] { opacity:0.5; transform:none; cursor:not-allowed; }
+
+    /* ---------- Result page ---------- */
+    .result-card { background:var(--card-bg); padding:28px; border-radius:12px; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.6); }
+    .result-house {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.8rem;
+      margin: 6px 0;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--accent), #fff6d0, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s infinite linear;
+      text-shadow: #c29a35;
+    }
+    @keyframes shimmer { 0% { background-position: -200px 0; } 100% { background-position: 200px 0; } }
+
+    .result-desc { margin-top:6px; color:rgba(255,255,255,0.95); line-height:1.5; }
+    .house-emoji { font-size:56px; display:block; margin-bottom:6px; }
+
+    /* -------- Sparkle Cursor -------- */
+    .sparkle {
+      position: fixed; width: 5px; height: 5px; background: gold;
+      border-radius: 50%; pointer-events: none;
+      animation: sparkle 1s linear forwards; z-index: 9999;
+    }
+    @keyframes sparkle { 0%{transform:scale(1);opacity:1;} 100%{transform:scale(0);opacity:0;} }
+
+    /* -------- Confetti -------- */
+    .confetti {
+      position: fixed; width:8px; height:14px; opacity:0.9; z-index:9999;
+      border-radius:2px; animation:fall 3s ease-out forwards;
+    }
+    @keyframes fall {
+      0%{transform:translateY(0) rotate(0deg); opacity:1;}
+      100%{transform:translateY(100vh) rotate(720deg); opacity:0;}
+    }
+
+    /* subtle animation on result text */
+    .fade-in { animation: fadeIn .8s ease both; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(8px) } to { opacity:1; transform:none } }
+
+    /* make layout responsive */
+    @media (max-width:880px){
+      .quiz-wrap{flex-direction:column;}
+      .quiz-aside{width:100%; order:2;}
+    }
+
+    /* small helper */
+    .muted { color:rgba(255,255,255,0.7); font-size:1rem; font-weight: 1000;}
+
+  /* ---------- Reviews Section ---------- */
+.reviews-section {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(0,0,0,0.45);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  animation: fadeIn .8s ease both;
+}
+
+.reviews-section h2 {
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2rem;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  background: rgba(0,0,0,0.35);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+
+.review-author {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" id="navHome" class="active" onclick="showPage('page-home', this)">Home</a>
+    <a href="#" id="navQuiz" onclick="showPage('page-quiz', this)">Quiz</a>
+  </nav>
+
+  <!-- ---------- HOME ---------- -->
+  <main id="page-home" class="page">
+    <header><h1>Welcome to the Hogwarts House Quiz</h1></header>
+
+    <div id="greeting">Good day, Witch or Wizard!</div>
+
+    <p style="text-align:center;color:rgba(255,255,255,0.85);margin:8px 0 18px; font-size: 20px; font-weight: 600;">
+      Answer 20 quick questions to discover which Hogwarts house fits you best.
+    </p>
+
+    <section class="house-info">
+
+      <!-- GRYFFINDOR -->
+      <div class="house gryffindor">
+        <div class="house-content">
+          <h2>Gryffindor</h2>
+          <p>
+            Gryffindors are defined by their <strong>courage</strong> and readiness to take action. They act instinctively in defense of what they believe is right, often placing themselves in danger for the sake of others. Their bravery is not the absence of fear, but the triumph over it.<br><br>
+            Members of this house are <strong>passionate</strong>, daring, and guided by a strong moral code. They inspire others through loyalty and self-sacrifice, valuing <strong>honor</strong> and <strong>friendship</strong> over personal gain. Their fiery spirit can make them impulsive at times, yet it is this same fire that turns them into heroes in the face of darkness.<br><br>
+            <strong>Traits:</strong> Courage, leadership, boldness, selflessness<br>
+            <strong>Colors:</strong> Scarlet and Gold<br>
+            <strong>Mascot:</strong> Lion<br>
+            <strong>Element:</strong> Fire
+          </p>
+        </div>
+        <img src="https://i.pinimg.com/474x/c4/53/a0/c453a00f4ddc4de3853830fd373788c8.jpg" alt="Gryffindor logo">
+      </div>
+
+      <!-- RAVENCLAW -->
+      <div class="house ravenclaw">
+        <div class="house-content">
+          <h2>Ravenclaw</h2>
+          <p>
+            Ravenclaws are defined by their <strong>intellect</strong>, curiosity, and unending pursuit of wisdom. They see knowledge as a form of power and beauty, finding joy in discovery and understanding. For them, learning is not just a means to success but a lifelong adventure.<br><br>
+            Members of this house are <strong>thoughtful</strong>, independent, and creative thinkers who value <strong>originality</strong> above conformity. They often stand apart from the crowd, guided by logic and imagination in equal measure. While their focus on intellect can make them seem aloof, their minds are always at work seeking truth in all things.<br><br>
+            <strong>Traits:</strong> Intelligence, creativity, wit, curiosity<br>
+            <strong>Colors:</strong> Blue and Bronze<br>
+            <strong>Mascot:</strong> Eagle<br>
+            <strong>Element:</strong> Air
+          </p>
+        </div>
+        <img src="https://i.pinimg.com/736x/7c/b2/6b/7cb26ba5add70e373f6959896d1aa0f7.jpg" alt="Ravenclaw logo">
+      </div>
+
+      <!-- HUFFLEPUFF -->
+      <div class="house hufflepuff">
+        <div class="house-content">
+          <h2>Hufflepuff</h2>
+          <p>
+            Hufflepuffs are defined by their <strong>kindness</strong>, patience, and unwavering sense of fairness. They believe in the value of hard work and humility, treating everyone with respect regardless of status or skill. Their quiet strength lies in their steadfastness and sense of community.<br><br>
+            Members of this house are <strong>loyal</strong>, dependable, and grounded. They find honor in honest effort and <strong>friendship</strong>, often acting as the glue that holds others together. While they may not seek glory, their perseverance and compassion make them the heart of Hogwarts.<br><br>
+            <strong>Traits:</strong> Loyalty, honesty, patience, dedication<br>
+            <strong>Colors:</strong> Yellow and Black<br>
+            <strong>Mascot:</strong> Badger<br>
+            <strong>Element:</strong> Earth
+          </p>
+        </div>
+        <img src="https://i.pinimg.com/736x/06/34/ca/0634ca00556e9bb17d5f27efc119be74.jpg" alt="Hufflepuff logo">
+      </div>
+
+      <!-- SLYTHERIN -->
+      <div class="house slytherin">
+        <div class="house-content">
+          <h2>Slytherin</h2>
+          <p>
+            Slytherins are defined by their <strong>ambition</strong>, resourcefulness, and determination to achieve greatness. They possess a sharp instinct for self-preservation and strategy, often thinking several steps ahead of others. To them, success is earned through willpower and cleverness.<br><br>
+            Members of this house are <strong>driven</strong> and charismatic, unafraid to take risks or challenge limits. Their ambition can make them competitive, but it also fuels <strong>innovation</strong> and leadership. While often misunderstood as deceitful, true Slytherins value <strong>loyalty</strong> and pride within their circle.<br><br>
+            <strong>Traits:</strong> Ambition, cunning, leadership, determination<br>
+            <strong>Colors:</strong> Green and Silver<br>
+            <strong>Mascot:</strong> Serpent<br>
+            <strong>Element:</strong> Water
+          </p>
+        </div>
+        <img src="https://i0.wp.com/starbaseatlanta.com/wp-content/uploads/hptn7057.jpg?w=640" alt="Slytherin logo">
+      </div>
+
+    </section>
+
+    <div class="center">
+      <button class="btn" onclick="showPage('page-quiz', document.getElementById('navQuiz'))">
+        Take Quiz
+      </button>
+    </div>
+
+    <section class="reviews-section fade-in">
+  <h2>User Reviews</h2>
+
+  <div class="reviews-grid">
+
+    <!-- Review 1 -->
+    <div class="review-card">
+      <div class="review-author">✨ Elara Moonwhisper</div>
+      <div class="review-text">
+        “A beautifully crafted quiz! The house descriptions are so immersive —
+        it truly feels like stepping into Hogwarts again.”
+      </div>
+     
+    </div>
+
+    <!-- Review 2 -->
+    <div class="review-card">
+      <div class="review-author">🔥 Cedric Hawthorn</div>
+      <div class="review-text">
+        “Loved the accuracy! I’ve taken dozens of sorting quizzes and this one
+        has the best visuals and the most meaningful questions.”
+      </div>
+     
+    </div>
+
+    <!-- Review 3 -->
+    <div class="review-card">
+      <div class="review-author">🌿 Maribel Fernbrook</div>
+      <div class="review-text">
+        “The results felt so personal — and the confetti made it magical!
+        Highly recommend this to every witch and wizard.”
+      </div>
+  
+    </div>
+
+  </div>
+</section>
+
+  </main>
+
+  <!-- ---------- QUIZ ---------- -->
+  <main id="page-quiz" class="page" style="display:none;">
+    <div class="quiz-wrap">
+      <section class="quiz-main">
+        <h2 style="margin-top:2px;font-family:'Libre Baskerville',serif;">The Sorting Quiz</h2>
+        <p class="muted">Choose the option that best fits you.</p>
+
+        <div id="questions"></div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin-top:16px;">
+          <button id="submitBtn" class="btn" disabled onclick="submitQuiz()">Submit Quiz</button>
+          <button class="btn secondary" onclick="scrollToTop()">Back to top</button>
+
+          <div style="flex:1"></div>
+          <div class="muted">Answered: <span id="answeredCount">0</span>/20</div>
+        </div>
+      </section>
+
+      <aside class="quiz-aside">
+        <div class="aside-mini">Progress</div>
+        <div class="progress"><i id="progressBar"></i></div>
+
+        <div style="height:10px;"></div>
+
+        <div class="aside-mini">Hints</div>
+        <div class="muted">Be honest — your first instinct is the most accurate.</div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ---------- RESULT ---------- -->
+  <main id="page-result" class="page" style="display:none;">
+    <div class="result-card fade-in">
+      <div class="house-emoji" id="resultEmoji">🪄</div>
+      <div class="result-house" id="resultName"></div>
+      <div class="result-desc" id="resultDesc"></div>
+
+      <div style="margin-top:18px;">
+        <button class="btn" onclick="showPage('page-home', document.getElementById('navHome'))">Return Home</button>
+        <button class="btn secondary" onclick="showPage('page-quiz', document.getElementById('navQuiz'))">Retake Test</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ---------- SCRIPTS ---------- -->
+  <script>
+    /* ---------- Full 20 questions (values 1=Gryff, 2=Huff, 3=Raven, 4=Slyth) ---------- */
+    const questionsData = [
+      { q: "You see someone being treated unfairly. You…", opts:[
+          {t:"Act bravely and defend them.",v:1},
+          {t:"Comfort them quietly.",v:2},
+          {t:"Analyze and advise.",v:3},
+          {t:"Plan a strategic solution.",v:4}
+      ]},
+      { q: "Which would you rather be praised for?", opts:[
+          {t:"Bravery.",v:1},{t:"Kindness.",v:2},{t:"Wisdom.",v:3},{t:"Cunning.",v:4}
+      ]},
+      { q: "In a team project, your role is usually:", opts:[
+          {t:"Lead and motivate the group.",v:1},
+          {t:"Bring people together and keep peace.",v:2},
+          {t:"Research and provide insights.",v:3},
+          {t:"Strategize and aim for top results.",v:4}
+      ]},
+      { q: "You value most:", opts:[
+          {t:"Courage and action.",v:1},
+          {t:"Loyalty and hard work.",v:2},
+          {t:"Curiosity and learning.",v:3},
+          {t:"Ambition and influence.",v:4}
+      ]},
+      { q: "Which class at Hogwarts would you most enjoy?", opts:[
+          {t:"Defense Against the Dark Arts (action)",v:1},
+          {t:"Care of Magical Creatures (steady work)",v:2},
+          {t:"Arithmancy or Runes (mind-challenging)",v:3},
+          {t:"Potions (strategic craft)",v:4}
+      ]},
+      { q: "Your ideal legacy is to be known for:", opts:[
+          {t:"Heroism and courage under pressure.",v:1},
+          {t:"Loyalty and kindness to many.",v:2},
+          {t:"A brilliant mind and new ideas.",v:3},
+          {t:"Power, influence, and results.",v:4}
+      ]},
+      { q: "At a crossroads, you rely on:", opts:[
+          {t:"Your heart and instincts.",v:1},
+          {t:"Advice from those you trust.",v:2},
+          {t:"Facts, research and logic.",v:3},
+          {t:"What advances your long-term plan.",v:4}
+      ]},
+      { q: "When under pressure, you:", opts:[
+          {t:"Jump into action.",v:1},
+          {t:"Stay calm and steady.",v:2},
+          {t:"Think through every option.",v:3},
+          {t:"Look for the most effective advantage.",v:4}
+      ]},
+      { q: "Which describes you best?", opts:[
+          {t:"Bold and outspoken.",v:1},
+          {t:"Kind and reliable.",v:2},
+          {t:"Quiet and curious.",v:3},
+          {t:"Calculated and ambitious.",v:4}
+      ]},
+      { q: "Your friends would call you:", opts:[
+          {t:"Brave.",v:1},{t:"Trustworthy.",v:2},{t:"Smart.",v:3},{t:"Resourceful.",v:4}
+      ]},
+      { q: "If given a risky plan, you:", opts:[
+          {t:"Take the risk for the greater good.",v:1},
+          {t:"Consider who it affects and act fairly.",v:2},
+          {t:"Evaluate data and possible outcomes.",v:3},
+          {t:"Exploit the opportunity to benefit.",v:4}
+      ]},
+      { q: "You admire people who are:", opts:[
+          {t:"Fearless leaders.",v:1},
+          {t:"Steady helpers.",v:2},
+          {t:"Inventive thinkers.",v:3},
+          {t:"Ambitious achievers.",v:4}
+      ]},
+      { q: "When solving a problem, you prefer:", opts:[
+          {t:"A bold, immediate solution.",v:1},
+          {t:"A fair and collaborative one.",v:2},
+          {t:"An elegant, well-reasoned approach.",v:3},
+          {t:"A solution that secures advantage.",v:4}
+      ]},
+      { q: "Which would you choose as a pet?", opts:[
+          {t:"A loyal dog.",v:1},{t:"A hardworking badger.",v:2},{t:"An intelligent raven.",v:3},{t:"A clever snake.",v:4}
+      ]},
+      { q: "You are most proud of:", opts:[
+          {t:"Acts of bravery you've done.",v:1},
+          {t:"Being there for others.",v:2},
+          {t:"Your knowledge and discoveries.",v:3},
+          {t:"Your achievements and influence.",v:4}
+      ]},
+      { q: "In a difficult moment, what guides you the most?", opts:[
+          {t:"Your courage and immediate instincts.",v:1},
+          {t:"Your loyalty and the people you care for.",v:2},
+          {t:"Your knowledge and ability to think clearly.",v:3},
+          {t:"Your ambition and vision of the bigger picture.",v:4}
+      ]},
+      { q: "When working alone, you prefer:", opts:[
+          {t:"Challenging tasks that test you.",v:1},
+          {t:"Steady tasks with clear value.",v:2},
+          {t:"Complex puzzles and learning.",v:3},
+          {t:"Projects that lead to measurable success.",v:4}
+      ]},
+      { q: "Which of these motivations moves you most?", opts:[
+          {t:"Protecting others.",v:1},
+          {t:"Helping and belonging.",v:2},
+          {t:"Understanding and discovery.",v:3},
+          {t:"Leadership and victory.",v:4}
+      ]},
+      { q: "If you had to pick one strength, it would be:", opts:[
+          {t:"Courage.",v:1},{t:"Patience.",v:2},{t:"Intelligence.",v:3},{t:"Ambition.",v:4}
+      ]},
+      { q: "Final question — when given power, you:", opts:[
+          {t:"Use it to protect and defend.",v:1},
+          {t:"Use it to help your community.",v:2},
+          {t:"Use it to learn and innovate.",v:3},
+          {t:"Use it to achieve your goals.",v:4}
+      ]}
+    ];
+
+    /* ---------- Render quiz UI ---------- */
+    const questionsContainer = document.getElementById('questions');
+    const totalQuestions = questionsData.length;
+    const answeredCountEl = document.getElementById('answeredCount');
+    const progressBar = document.getElementById('progressBar');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function renderQuestions() {
+      questionsContainer.innerHTML = "";
+      questionsData.forEach((qobj, idx) => {
+        const block = document.createElement('div');
+        block.className = 'question-block fade-in';
+        block.id = 'qblock-' + idx;
+
+        let html = `<h3>${idx+1}. ${qobj.q}</h3>`;
+        html += `<div class="options" data-q="${idx}">`;
+        qobj.opts.forEach((opt, oidx) => {
+          const inputId = `q${idx}_o${oidx}`;
+          html += `<label for="${inputId}"><input type="radio" id="${inputId}" name="q${idx}" value="${opt.v}" /> <span>${opt.t}</span></label>`;
+        });
+        html += `</div>`;
+
+        block.innerHTML = html;
+        questionsContainer.appendChild(block);
+      });
+
+      // attach listeners to inputs to update progress and enable submit
+      const allInputs = questionsContainer.querySelectorAll('input[type="radio"]');
+      allInputs.forEach(input => {
+        input.addEventListener('change', updateProgress);
+      });
+
+      // reset progress UI
+      updateProgress();
+      // scroll to top for fresh start
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress(){
+      let answered = 0;
+      for(let i=0;i<totalQuestions;i++){
+        if(document.querySelector(`input[name="q${i}"]:checked`)) answered++;
+      }
+      answeredCountEl.textContent = answered;
+      const percent = Math.round((answered/totalQuestions)*100);
+      progressBar.style.width = percent + "%";
+      if(answered === totalQuestions){
+        submitBtn.removeAttribute('disabled');
+      } else {
+        submitBtn.setAttribute('disabled','');
+      }
+    }
+
+    function submitQuiz(){
+      // ensure all answered
+      for (let i=0;i<totalQuestions;i++){
+        if(!document.querySelector(`input[name="q${i}"]:checked`)){
+          alert('Please answer all questions before submitting.');
+          return;
+        }
+      }
+      let total = 0;
+      for(let i=0;i<totalQuestions;i++){
+        total += Number(document.querySelector(`input[name="q${i}"]:checked`).value);
+      }
+      showResult(total);
+    }
+
+    function showResult(score){
+      // show result page
+      showPage('page-result', null);
+
+      // map score -> house (range 20..80)
+      let houseKey = '';
+      if (score <= 35) houseKey = 'gryffindor';
+      else if (score <= 50) houseKey = 'hufflepuff';
+      else if (score <= 65) houseKey = 'ravenclaw';
+      else houseKey = 'slytherin';
+
+      const nameEl = document.getElementById('resultName');
+      const descEl = document.getElementById('resultDesc');
+      const emojiEl = document.getElementById('resultEmoji');
+
+      if (houseKey === 'gryffindor') {
+        nameEl.textContent = 'Gryffindor';
+        emojiEl.textContent = '🦁';
+        descEl.innerHTML = '<b>Bravery • Daring • Nerve</b><br/>You value courage and bold action. You stand up for others and lead by example.';
+        nameEl.style.color = 'var(--gryff)';
+      } else if (houseKey === 'hufflepuff') {
+        nameEl.textContent = 'Hufflepuff';
+        emojiEl.textContent = '🦡';
+        descEl.innerHTML = '<b>Loyalty • Patience • Fairness</b><br/>You value hard work and kindness. You make steady progress and are a loyal friend.';
+        nameEl.style.color = 'var(--huff)';
+      } else if (houseKey === 'ravenclaw') {
+        nameEl.textContent = 'Ravenclaw';
+        emojiEl.textContent = '🦅';
+        descEl.innerHTML = '<b>Intelligence • Curiosity • Wit</b><br/>You prize ideas and original thinking. You enjoy learning and solving complex problems.';
+        nameEl.style.color = 'var(--raven)';
+      } else {
+        nameEl.textContent = 'Slytherin';
+        emojiEl.textContent = '🐍';
+        descEl.innerHTML = '<b>Ambition • Resourcefulness • Strategy</b><br/>You plan for success and are willing to take calculated risks to reach your goals.';
+        nameEl.style.color = 'var(--slyth)';
+      }
+
+      // subtle animation
+      const card = document.querySelector('#page-result .result-card');
+      card.classList.remove('fade-in');
+      void card.offsetWidth;
+      card.classList.add('fade-in');
+
+      // The confetti will be shown by patched function (see below)
+    }
+
+    /* ---------- Navigation / Page handling ---------- */
+    function showPage(pageId, navEl){
+      ['page-home','page-quiz','page-result'].forEach(id=>{
+        document.getElementById(id).style.display = 'none';
+      });
+      document.getElementById(pageId).style.display = 'block';
+
+      document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+      if(navEl) navEl.classList.add('active');
+
+      // special: only show greeting on home
+      const greeting = document.getElementById('greeting');
+      if (pageId === 'page-home') greeting.style.display = 'block'; else greeting.style.display = 'none';
+
+      if (pageId === 'page-quiz') renderQuestions();
+
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+
+    /* ---------- Init: set greeting to home only ---------- */
+    (function init() {
+      const h=new Date().getHours();
+      const greet = h<12?"Good Morning":h<18?"Good Afternoon":"Good Evening";
+      document.getElementById('greeting').textContent = greet + ', Witch or Wizard!';
+      showPage('page-home', document.getElementById('navHome'));
+    })();
+
+    /* ---------- Sparkle cursor (single instance) ---------- */
+    document.addEventListener('mousemove', e=>{
+      const sparkle=document.createElement('div');
+      sparkle.className="sparkle";
+      sparkle.style.left=(e.clientX-2)+'px';
+      sparkle.style.top=(e.clientY-2)+'px';
+      document.body.appendChild(sparkle);
+      setTimeout(()=>sparkle.remove(),1000);
+    });
+
+    /* ---------- Confetti patch (unique, inserted once) ---------- */
+    function showConfettiByHouse(house) {
+      const colorMap = {
+        gryffindor: ['#a00000', '#ffcc00', '#ff5555'],
+        slytherin: ['#0a4d2f', '#2ecc71', '#c0c0c0'],
+        ravenclaw: ['#1d4e89', '#8ab6d6', '#b08d57'],
+        hufflepuff: ['#d4af37', '#ffcc33', '#3b2f1e']
+      };
+      const colors = colorMap[house] || ['#ffffff', '#cccccc'];
+
+      for (let i = 0; i < 120; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = -10 + 'px';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.style.width = (6 + Math.random()*6) + 'px';
+        confetti.style.height = (10 + Math.random()*10) + 'px';
+        confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(()=>confetti.remove(),4000);
+      }
+    }
+
+    // Patch into showResult: run original then confetti
+    (function patchConfetti(){
+      const originalShowResult = window.showResult;
+      window.showResult = function(...args){
+        if (typeof originalShowResult === 'function') {
+          originalShowResult.apply(this, args);
+        }
+        const name = document.getElementById('resultName')?.textContent?.toLowerCase();
+        showConfettiByHouse(name);
+      };
+    })();
+
+  </script>
+
+</body>
+</html>
+  
