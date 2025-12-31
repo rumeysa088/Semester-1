@@ -10,20 +10,20 @@ PF contains all practice work, assignments, labwork, and the final project compl
 Description:
 This project is a console-based game developed in C, inspired by the popular mobile game "Piano Tiles." In the game, tiles fall down four lanes, and the player must press the correct keys (A, S, D, F) to hit the tiles at the right time. Hitting a normal tile increases the score, while missing a tile reduces lives. Special blue "freeze" tiles instantly end the game if pressed.
 
-The game features:
+<ul>The game features:
 
-Randomly generated falling tiles in four lanes
+<li>Randomly generated falling tiles in four lanes</li>
 
-A lives system; the game ends when lives reach zero
+<li>A lives system; the game ends when lives reach zero</li>
 
-Increasing speed as the score increases to make gameplay more challenging
+<li>Increasing speed as the score increases to make gameplay more challenging</li>
 
-Colorful console display using ANSI codes for normal and freeze tiles
+<li>Colorful console display using ANSI codes for normal and freeze tiles</li>
 
-Sound effects using system beep
+<li>Sound effects using system beep</li>
 
-Motivational messages when tiles are hit correctly
-
+<li>Motivational messages when tiles are hit correctly</li>
+</ul>
 This project demonstrates programming concepts such as arrays, structures, loops, functions, conditional statements, real-time input handling, and console manipulation. It combines logic, timing, and interaction to create an engaging and playable game experience.
 ICT contains practice exercises and the final project for the semester.
 
@@ -31,22 +31,22 @@ ICT contains practice exercises and the final project for the semester.
 
 This is an interactive Hogwarts House Quiz web application built using HTML, CSS, and JavaScript. The project allows users to answer 20 questions and discover which Hogwarts house they belong to: Gryffindor, Hufflepuff, Ravenclaw, or Slytherin.
 
-Features include:
+<ul>Features include:
 
-A visually appealing homepage with house information and descriptions.
+<li>A visually appealing homepage with house information and descriptions.</li>
 
-A dynamic quiz interface with multiple-choice questions.
+<li>A dynamic quiz interface with multiple-choice questions.</li>
 
-Real-time progress tracking and submission validation.
+<li>Real-time progress tracking and submission validation.</li>
 
-A results page showing the assigned house with a descriptive summary and fun emojis.
+<li>A results page showing the assigned house with a descriptive summary and fun emojis.</li>
 
-Interactive animations including sparkle cursor effects and confetti celebrations for quiz results.
+<li>Interactive animations including sparkle cursor effects and confetti celebrations for quiz results.</li>
 
-Fully responsive design, compatible with different screen sizes.
+<li>Fully responsive design, compatible with different screen sizes.</li>
 
-User review section showcasing sample feedback.
-
+<li>User review section showcasing sample feedback.</li>
+</ul>
 This project demonstrates front-end development skills, including DOM manipulation, event handling, and styling with CSS for both layout and animations. It serves as a complete ICT semester project combining creativity, logic, and user interaction.
 
 This repository serves as a complete academic reference for all Semester 1 work and can be used for review or portfolio purposes.
