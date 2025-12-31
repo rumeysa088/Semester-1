@@ -1,7 +1,7 @@
 # Semester-1
 This repository contains all the work for Semester 1.
 
-The repository is organized into two main subjects: Programming Fundamentals (PF) and Information and Communication Technology (ICT).
+The repository is organized into two main subjects: <em>Programming Fundamentals (PF)</em> and <em>Information and Communication Technology (ICT)</em> .
 
 PF contains all practice work, assignments, labwork, and the final project completed during the semester.
 
